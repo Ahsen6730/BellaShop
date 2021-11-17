@@ -1,0 +1,20 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="footer-widgets">
+    <div class="container">
+        <div class="row">
+
+            @{Html.RenderAction("FotterAboutUs", "Home");} @*component*@
+            @{Html.RenderAction("FotterNewsLetter", "Home");} @*component*@
+            @{Html.RenderAction("FotterInformation", "Home");} @*component*@
+            @{Html.RenderAction("FotterItemTags", "Home");} @*component*@
+            
+
+        </div>
+    </div>
+</div>
+
+

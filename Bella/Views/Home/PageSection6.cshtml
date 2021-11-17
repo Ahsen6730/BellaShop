@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Bella.Models.Firma>
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    <section class="page-section">
+        <div class="container">
+            <h2 class="section-title"><span>MARKA &amp;  MÜŞTERİLER </span></h2>
+            <div class="partners-carousel">
+                <div class="owl-carousel" id="partners">
+                    @foreach (var item in Model)
+                    {<div><a href="#"><img src="..@item.FirmaLogo" alt="" /></a></div>
+                    }
+                    </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+

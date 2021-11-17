@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <link rel="shortcut icon" href="~/admin/images/favicon_1.ico">
+
+    <title>Ubold - Responsive Admin Dashboard Template</title>
+
+    <!--Morris Chart CSS -->
+    <link href="~/admin/plugins/morris/morris.css" rel="stylesheet" />
+    <script src="~/admin/js/jquery.min.js"></script>
+    <link href="~/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/css/responsive.css" rel="stylesheet" type="text/css" />
+    <script src="~/Sablon/plugin/type-ahead/typeahead.jquery.min.js"></script>
+    <script src="~/Sablon/plugin/type-ahead/typeahead.bundle.js"></script>
+    <script src="~/Sablon/plugin/type-ahead/handlebars.js"></script>
+    <link href="~/Sablon/plugin/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" />
+    <link href="~/Sablon/plugin/bootstrap-table/css/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/Sablon/plugin/date-picker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+
+</head>
+
+
+<body class="fixed-left">
+
+    <!-- Begin page -->
+
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <!-- Button mobile view to collapse sidebar menu -->
+        @{Html.RenderAction("UstMenu", "Admin");}@*component*@
+
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== -->
+
+       
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="container" style="margin-top:55px;margin-left:55px;margin-right:55px;">
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
+
+        @{Html.RenderAction("AltMenu", "Admin");}@*component*@
+
+
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- /Right-bar -->
+
+    </div>
+
+    <!-- END wrapper -->
+
+
+
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <!-- jQuery  -->
+    <script src="~/admin/js/modernizr.min.js"></script>
+
+
+    <script src="~/Sablon/plugin/bootstrap-sweetalert/sweet-alert.min.js"></script>
+    <script src="~/Sablon/plugin/bootstrap-table/js/bootstrap-table.min.js"></script>
+    <script src="~/Sablon/plugin/bootstrap-table/js/bootstrap-table-tr-TR.min.js"></script>
+    <script src="~/Sablon/plugin/date-picker/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Sablon/plugin/date-picker/bootstrap-datetimepicker.tr.js"></script>
+    <script src="~/admin/js/bootstrap.min.js"></script>
+    <script src="~/admin/js/detect.js"></script>
+    <script src="~/admin/js/fastclick.js"></script>
+
+    <script src="~/admin/js/jquery.slimscroll.js"></script>
+    <script src="~/admin/js/jquery.blockUI.js"></script>
+    <script src="~/admin/js/waves.js"></script>
+    <script src="~/admin/js/wow.min.js"></script>
+    <script src="~/admin/js/jquery.nicescroll.js"></script>
+    <script src="~/admin/js/jquery.scrollTo.min.js"></script>
+    <script src="~/admin/plugins/peity/jquery.peity.min.js"></script>
+    <!-- jQuery  -->
+    <script src="~/admin/plugins/waypoints/lib/jquery.waypoints.js"></script>
+    <script src="~/admin/plugins/counterup/jquery.counterup.min.js"></script>
+    <script src="~/admin/plugins/raphael/raphael-min.js"></script>
+
+    <script src="~/admin/plugins/jquery-knob/jquery.knob.js"></script>
+
+    <script src="~/admin/js/jquery.core.js"></script>
+    <script src="~/admin/js/jquery.app.js"></script>
+
+    <script src="~/admin/plugins/morris/morris.min.js"></script>
+    <script src="~/admin/plugins/counterup/jquery.counterup.min.js"></script>
+    <script src="~/Sablon/plugin/Function/OrtakScript.js"></script>
+    <script type="text/javascript">
+        $('.OL_TARIH').datetimepicker({
+            language: 'tr', weekStart: 1, todayBtn: 1, autoclose: 1,
+            todayHighlight: 1, startView: 2, minView: 2, forceParse: 0
+            , defaultDate: new Date()
+        });
+
+        @*$(document).ready(function () {
+
+         var title = " @ViewBag.title ";
+        $('#GenelSayfaBasligi').html(title);
+    });*@
+
+    </script>
+    <!-- Dinamik ModalBox -->
+    <div id="SonucBekle" class="modal wine" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: none;">
+        <div class="modal-dialog" style="width:25%;height:25%">
+            <div class="modal-content" style="background-color:lightgray;padding:2px;">
+                <div id="myModal1" class="modal-dialog modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">İşleniyor...<i class="KayitNoDurum"></i></h4>
+                        </div>
+                        <div class="modal-body" style="text-align:center;">
+                            <br />
+                            <img src="~/Sablon/image/gears.gif" />
+                        </div>
+                        <div class="modal-footer" style="text-align:center;">
+                            <span id="mesajmetnibekle" style="color:red;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+
+
+
+
+</body>
+</html>

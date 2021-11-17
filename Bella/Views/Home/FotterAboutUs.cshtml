@@ -1,0 +1,22 @@
+﻿@model List<Bella.Models.Hakkimizda>
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+
+    <div class="col-md-3">
+        <div class="widget">
+            <h4 class="widget-title">HAKKIMIZDA </h4>
+            @foreach (var item in Model)
+            {<p>@item.Yazi</p>}
+                <ul class="social-icons">
+                    <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
+                </ul>
+            </div>
+    </div>
+}
+

@@ -1,0 +1,22 @@
+﻿.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #ffffff;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 1
+}
+.close:focus,.close:hover {
+        color: #ffffff;
+        text-decoration: none;
+        cursor: pointer;
+        filter: alpha(opacity=50);
+        opacity: 1
+}
+.pointer {
+cursor:pointer;
+}
+
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Bella.Models.EnYeni>
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{<div class="col-md-4">
+        <div class="product-list">
+            <a class="btn btn-theme btn-title-more" href="#">Tümünü Gör</a>
+            <h4 class="block-title"><span>Çok satanlar</span></h4>
+            @foreach (var item in Model)
+            {
+
+                <div class="media">
+                    <a class="pull-left media-link" href="#">
+                        <img class="media-object" src="..@item.Urun.Resim" alt="">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="#">@item.Urun.UrunAdi</a></h4>
+                        <div class="rating">
+                            <span class="star"></span>
+                            <!--
+                            -->
+                            <span class="star active"></span>
+                            <!--
+                            -->
+                            <span class="star active"></span>
+                            <!--
+                            -->
+                            <span class="star active"></span>
+                            <!--
+                            -->
+                            <span class="star active"></span>
+                        </div>
+                        <div class="price"><ins>&#8378;@item.Urun.UrunFİyatları.OrderByDescending(b => b.ID).FirstOrDefault().Fiyat</ins> <del>&#8378;425.00</del></div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>}
+
+

@@ -1,0 +1,22 @@
+﻿@model List<Bella.Models.Reklam>
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+
+    <section class="page-section">
+        <div class="container">
+            <div class="message-box">
+                @foreach (var item in Model)
+                {<div class="message-box-inner">
+                        <h2>
+                            @item.Yazi
+                        </h2>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+

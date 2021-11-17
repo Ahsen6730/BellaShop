@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Bella.Models.SonGonderimiz>
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+
+
+
+    <section class="page-section">
+       {<div class="container">
+    <a class="btn btn-theme btn-title-more btn-icon-left" href="#"><i class="fa fa-file-text-o"></i>Bütün Mesajlara Bak</a>
+    <h2 class="block-title"><span>Son gönderilerimiz</span></h2>
+    <div class="row">
+        @foreach (var item in Model)
+        {<div class="col-md-6">
+                <div class="recent-post">
+                    <div class="media">
+                        <a class="pull-left media-link" href="#">
+                            <img class="media-object" src="..@item.Resim" alt="">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                        <div class="media-body">
+                            <p class="media-category"><a href="#">@item.Baslik</a><a href="#"></a></p>
+                            <h4 class="media-heading"><a href="#">@item.Orta</a></h4>
+                            @item.Yazi
+                            <div class="media-meta">
+
+                                6 Haziran 2014
+                                <span class="divider">/</span><a href="#"><i class="fa fa-comment"></i>27</a>
+                                <span class="divider">/</span><a href="#"><i class="fa fa-heart"></i>18</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+</div>
+    </section>
+}

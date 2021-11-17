@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<section class="page-section no-padding slider">
+    <div class="container full-width">
+
+        <div class="main-slider">
+            <div class="owl-carousel" id="main-slider">
+
+                <!-- Slide 1 -->
+                @{Html.RenderAction("PageSlides1", "Home");}@*component*@
+                <!-- /Slide 1 -->
+                <!-- Slide 2 -->
+                @{Html.RenderAction("PageSlides2", "Home");}@*component*@
+                <!-- /Slide 2 -->
+                @{Html.RenderAction("PageSlides3", "Home");}@*component*@
+                <!-- /Slide 3 -->
+
+            </div>
+        </div>
+
+    </div>
+</section>
+

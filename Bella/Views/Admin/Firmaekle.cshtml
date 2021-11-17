@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Bella.Models.Firma>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+@if (Model != null)
+{
+
+
+
+    <div class="row">
+
+        <div class="panel panel-color panel-inverse">
+            <div class="panel-heading" style="height:35px;">
+                <h3 class="panel-title">Firma EKLE</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6 ProjeToolBar">
+                    <a id="BtnYeniProje" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Ekle</a>
+                </div>
+                <table id="table-Projeler" data-toolbar=".ProjeToolBar" data-url="/Admin/FirmaListGetir" data-height="100%" data-pagination="true" data-page-list="[20,50,100,250,500,1000,2000,4000]" data-page-size="20"
+                       data-toggle="table" data-show-refresh="true" data-show-toggle="false" data-show-columns="false" data-search="true" data-select-item-name="toolbar1"
+                       data-show-export="false" data-side-pagination="server" style="display:table;">
+                    <thead>
+                        <tr>
+                            <th data-field="operate" data-formatter="oprtProje" data-events="oprtProjeEvent">İşlem</th>
+                            <th data-field="ID" data-sortable="false" data-visible="false">ID</th>
+                            <th data-field="FirmaLogo" data-sortable="false"> Firma Logo</th>
+                          
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <div id="mdlProjeForm" class="modal wine" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color:lightgray;padding:5px;">
+                    <form id="frmProje" class="card-box" action="/Admin/Firmaekle" method="post" enctype="multipart/form-data">
+                        <div class="row ">
+                            <div class="Projelertoolbar">
+                                <strong class="panel-title">Firma</strong>
+                            </div>
+                            <input type="hidden" name="ID" value="0">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="field-2" class="control-label">Firma Logo</label>
+                                    <input type="file" name="FirmaLogo" id="uploadfile" />
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button id="btnProjeKaydet" class="btn btn-default waves-effect waves-light" type="submit">
+                            Kaydet
+                        </button>
+
+                        <a id="btnProjeKapat" class="btn btn-danger waves-effect waves-light pull-right">Kapat</a>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /.modal -->
+
+    </div>
+    <script type="text/javascript">
+
+
+            function oprtProje(value, row, index) {
+                return [
+                    '<div>',
+                    ' <div class="btn-group">',
+                    ' <button type="button" class="btn btn-xs  btn-success btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false">',
+                    '<i class="fa fa-cogs" >&nbsp;</i> &nbsp;',
+                    '  <span class="fa fa-caret-down"></span>',
+                    '   <span class="sr-only">Toggle Dropdown</span>',
+                    '  </button>',
+                    '  <ul class="dropdown-menu"  style="position:static;" role="menu">',
+                    ' <li><a href="#" id="btnProjeDuzenle"  data-toggle="tooltip" title="Proje Düzenle" data-placement="bottom"><i class="fa fa-exclamation" ></i>Düzenle</a></li>',
+                    
+                    ' </ul>',
+                    ' </div>',
+                ].join('');
+            }
+            window.oprtProjeEvent = {
+                'click #btnProjeDuzenle': function (e, value, row, index) {
+                    $.get('/Admin/FirmaGetir?id=' + row.ID, function (data) {
+                        var cariform = $('#frmProje');
+                        populate(cariform, data[0]);
+                        var mdl = $('#mdlProjeForm');
+                        mdl.modal('show');
+                    },
+
+                        'json');
+                },
+
+
+                'click #btnProjeCikart': function (e, value, row, index) {
+                    swal({
+                        title: "Ürün Kaydı İptal İşlemi",
+                        text: "Emin misiniz?",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonClass: "btn-default",
+                        cancelButtonText: "Vazgeç",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Devam",
+                        closeOnConfirm: false,
+                    }
+                       
+                        );
+                }
+            }
+
+
+            $('#BtnYeniProje').click(function () {
+                $('#frmProje')[0].reset();
+                $.get('/Proje/YeniProjeNoGetir', function (data) {
+                    $('.YeniProjeNo').val(data);
+                },
+                    'json');
+                var mdl = $('#mdlProjeForm');
+                mdl.modal('show');
+            });
+
+            $('#btnProjeKapat').click(function () {
+                var mdl = $('#mdlProjeForm');
+                mdl.modal('hide');
+            });
+
+
+
+
+    </script>
+}
+

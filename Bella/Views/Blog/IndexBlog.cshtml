@@ -1,0 +1,49 @@
+﻿@model List<Bella.Models.Hakkimizda>
+@{
+    ViewBag.Title = "IndexBlog";
+}
+
+
+    <div class="content-area">
+
+        <!-- BREADCRUMBS -->
+        <section class="page-section breadcrumbs">
+            <div class="container">
+                <div class="page-header">
+                    <h1>
+                        Hakkımızda
+                    </h1>
+                </div>
+                <ul class="breadcrumb"></ul>
+            </div>
+        </section>
+        <!-- /BREADCRUMBS -->
+        <!-- PAGE -->
+        @if (Model != null)
+        {<section class="page-section color">
+                @foreach (var item in Model)
+                {<div class="container">
+
+                        <p class="text-center lead">@item.Yazi</p>
+
+
+                        <hr class="page-divider" />
+                        <div class="row">
+
+                        </div>
+
+
+                    </div>
+                }
+            </section>
+}
+
+        </div>
+            @{Html.RenderAction("PageSection7", "Home");} @*component*@
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+﻿@model List<Bella.Models.Urun>
+
+@{
+    Layout = null;
+}
+
+
+
+
+    <div class="modal fade popup-cart" id="popup-cart" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="container">
+
+                
+                    <div class="cart-items">
+                        <div class="cart-items-inner">
+
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <div class="media">
+                                        <a class="pull-left" href="#"><img class="media-object item-image" src="..@item.Resim" alt=""></a>
+                                        <p class="pull-right item-price">&#8378;@item.Fiyat</p>
+                                        <div class="media-body">
+                                            <h4 class="media-heading item-title"><a href="#">@item.UrunAdi</a></h4>
+                                            <p class="item-desc">@item.UrunAciklama</p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            <div class="media">
+                                <div class="media-body">
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <div>
+                                        <a href="#" class="btn btn-theme btn-theme-dark" data-dismiss="modal">Kapat</a>
+                                        <!--
+                -->
+                                        <a href="shopping-cart.html" class="btn btn-theme btn-theme-transparent btn-call-checkout">Ödeme</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+
+            </div>
+        </div>
+    </div>
+
+

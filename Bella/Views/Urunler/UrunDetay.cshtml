@@ -1,0 +1,163 @@
+﻿@model Bella.Models.Urun
+@{
+    ViewBag.Title = "UrunDetay";
+  
+}
+
+    <section class="page-section">
+        <div class="container">
+
+            <div class="row product-single">
+                <div class="col-md-6">
+                    <div class="badges">
+                        <div class="hot">hot</div>
+                        <div class="new">new</div>
+                    </div>
+                    <div class="owl-carousel img-carousel">
+                        <div class="item">
+                            <a class="btn btn-theme btn-theme-transparent btn-zoom" href="~/assets/img/preview/shop/product-1-big.jpg" data-gal="prettyPhoto"><i class="fa fa-plus"></i></a>
+                            <a href="~/assets/img/preview/shop/product-1-big.jpg" data-gal="prettyPhoto"><img class="img-responsive" src="@Model.Resim" alt="" /></a>
+                        </div>
+                        <div class="item">
+                            <a class="btn btn-theme btn-theme-transparent btn-zoom" href="~/assets/img/preview/shop/product-1-big.jpg" data-gal="prettyPhoto"><i class="fa fa-plus"></i></a>
+                            <a href="~/assets/img/preview/shop/product-1-big.jpg" data-gal="prettyPhoto"><img class="img-responsive" src="@Model.Resim" alt="" /></a>
+                        </div>
+                        <div class="item">
+                            <a class="btn btn-theme btn-theme-transparent btn-zoom" href="~/assets/img/preview/shop/product-1-big.jpg" data-gal="prettyPhoto"><i class="fa fa-plus"></i></a>
+                            <a href="~/assets/img/preview/shop/product-1-big.jpg" data-gal="prettyPhoto"><img class="img-responsive" src="@Model.Resim" alt="" /></a>
+                        </div>
+                        <div class="item">
+                            <a class="btn btn-theme btn-theme-transparent btn-zoom" href="~/assets/img/preview/shop/product-1-big.jpg" data-gal="prettyPhoto"><i class="fa fa-plus"></i></a>
+                            <a href="~/assets/img/preview/shop/product-1-big.jpg" data-gal="prettyPhoto"><img class="img-responsive" src="@Model.Resim" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="row product-thumbnails">
+                        <div class="col-xs-2 col-sm-2 col-md-3"><a href="#" onclick="jQuery('.img-carousel').trigger('to.owl.carousel', [0, 300]);"><img src="@Model.Resim" alt="" /></a></div>
+                        <div class="col-xs-2 col-sm-2 col-md-3"><a href="#" onclick="jQuery('.img-carousel').trigger('to.owl.carousel', [1, 300]);"><img src="@Model.Resim" alt="" /></a></div>
+                        <div class="col-xs-2 col-sm-2 col-md-3"><a href="#" onclick="jQuery('.img-carousel').trigger('to.owl.carousel', [2, 300]);"><img src="@Model.Resim" alt="" /></a></div>
+                        <div class="col-xs-2 col-sm-2 col-md-3"><a href="#" onclick="jQuery('.img-carousel').trigger('to.owl.carousel', [3, 300]);"><img src="@Model.Resim" alt="" /></a></div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="back-to-category">
+                        <span class="link"><i class="fa fa-angle-left"></i> Back to <a href="/Urunn/IndexUrun">Category</a></span>
+                        <div class="pull-right">
+                            <a class="btn btn-theme btn-theme-transparent btn-previous" href="#"><i class="fa fa-angle-left"></i></a>
+                            <!--
+                        -->
+                            <a class="btn btn-theme btn-theme-transparent btn-next" href="#"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <h2 class="product-title">@Model.UrunAdi</h2>
+                    <div class="product-rating clearfix">
+                        <div class="rating">
+                            <span class="star"></span>
+                            <!--
+                        -->
+                            <span class="star active"></span>
+                            <!--
+                        -->
+                            <span class="star active"></span>
+                            <!--
+                        -->
+                            <span class="star active"></span>
+                            <!--
+                        -->
+                            <span class="star active"></span>
+                        </div>
+                       
+                    </div>
+                    <div class="product-availability">Availability: <strong>In stock</strong> 21 Item(s)</div>
+                    <hr class="page-divider small" />
+
+                    <div class="product-price">@Model.UrunFİyatları.OrderByDescending(b => b.ID).FirstOrDefault().Fiyat&#8378;s</div>
+                    <hr class="page-divider" />
+
+                    <div class="product-text">
+                        @Model.UrunAciklama @Model.UrunDetayliAciklama
+
+
+                    </div>
+                    <hr class="page-divider" />
+
+                    <form action="#" class="row variable">
+                        <div class="col-sm-6">
+                            <div class="form-group selectpicker-wrapper">
+                                <label for="exampleSelect1">Size</label>
+                                <select id="exampleSelect1"
+                                        class="selectpicker input-price" data-live-search="true" data-width="100%"
+                                        data-toggle="tooltip" title="Select">
+                                    <option>Select Your Size</option>
+                                    <option>Size 1</option>
+                                    <option>Size 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group selectpicker-wrapper">
+                                <label for="exampleSelect2">Color</label>
+                                <select id="exampleSelect2"
+                                        class="selectpicker input-price" data-live-search="true" data-width="100%"
+                                        data-toggle="tooltip" title="Select">
+                                    <option>Select Your Color</option>
+                                    <option>Color 1</option>
+                                    <option>Color 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <hr class="page-divider small" />
+
+
+                    <div class="buttons">
+                        <div class="quantity">
+                            <button class="btn"><i class="fa fa-minus"></i></button>
+                            <input class="form-control qty" type="number" step="1" min="1" name="quantity" value="1" title="Qty">
+                            <button class="btn"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <form id="frmProje" action="/Home/SepetEkle" method="post">
+                            <a class="btn btn-theme btn-theme-transparent btn-icon-left" onclick="SepeteEkle(@Model.ID)" id="btnProjeDuzenle"><i class="fa fa-shopping-cart"></i>Sepete ekle</a>
+                            <!--
+        -->
+                        </form>
+                        <button class="btn btn-theme btn-wish-list"><i class="fa fa-heart"></i></button>
+                        <button class="btn btn-theme btn-compare"><i class="fa fa-exchange"></i></button>
+                    </div>
+
+                    <hr class="page-divider small" />
+
+                    <table>
+                        <tr>
+                            <td class="title">Category:</td>
+                            <td>Men Dress</td>
+                        </tr>
+                        <tr>
+                            <td class="title">Product Code:</td>
+                            <td>PS08</td>
+                        </tr>
+                        <tr>
+                            <td class="title">Tags:</td>
+                            <td>Fashion - clothes - Dress - Men - jean</td>
+                        </tr>
+                    </table>
+                    <hr class="page-divider small" />
+
+                    <ul class="social-icons list-inline">
+                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+

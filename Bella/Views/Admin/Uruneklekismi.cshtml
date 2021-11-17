@@ -1,0 +1,176 @@
+﻿
+@{
+    Layout = null;
+
+}
+
+<div class="panel panel-color panel-inverse">
+    <div class="panel-heading" style="height:35px;">
+        <h3 class="panel-title">ÜRÜN EKLE</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-6 ProjeToolBar">
+            <a id="BtnYeniProje" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Ekle</a>
+        </div>
+        <table id="table-Projeler" data-toolbar=".ProjeToolBar" data-url="/Admin/UrunListGetir" data-height="100%" data-pagination="true" data-page-list="[20,50,100,250,500,1000,2000,4000]" data-page-size="20"
+               data-toggle="table" data-show-refresh="true" data-show-toggle="false" data-show-columns="false" data-search="true" data-select-item-name="toolbar1"
+               data-show-export="false" data-side-pagination="server" style="display:table;">
+            <thead>
+                <tr>
+                    <th data-field="operate" data-formatter="oprtProje" data-events="oprtProjeEvent">İşlem</th>
+                    <th data-field="ID" data-sortable="false" data-visible="false">ID</th>
+                    <th data-field="UrunAdi" data-sortable="false">Ürün Adı</th>
+                    <th data-field="UrunAciklama" data-sortable="false">Ürün Açıklama</th>
+                    <th data-field="UrunDetayliAciklama" data-sortable="false">Üürn Detaylı Açıklama</th>
+                    <th data-field="YildizSayisi" data-sortable="false">Yıldız Sayısı</th>
+                    <th data-field="Fiyat" data-sortable="false">Fiyat</th>
+                    <th data-field="Resim" data-sortable="false">Resim</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div id="mdlProjeForm" class="modal wine" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color:lightgray;padding:5px;">
+            <form id="frmProje" class="card-box" action="/Admin/Uruneklekismi" method="post"enctype="multipart/form-data">
+                <div class="row ">
+                    <div class="Projelertoolbar">
+                        <strong class="panel-title">Ürunler</strong>
+                    </div>
+                    <input type="hidden" name="ID" value="0">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Ürun Adı</label>
+                                <input type="text" name="UrunAdi" class="form-control" id="field-2" placeholder="Ürün Adı">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Ürün Açıklama</label>
+                                <input type="text" name="UrunAciklama" class="form-control" id="field-2" placeholder="Ürün Açıklama">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Detaylı Açıklama</label>
+                                <input type="text" name="UrunDetayliAciklama" class="form-control" id="field-2" placeholder="Detaylı Açıklama">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">Yıldız Sayısı</label>
+                            <input type="text" name="YildizSayisi" class="form-control" id="field-2" placeholder="Yıldız Sayısı">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">Fiyat</label>
+                            <input type="text" name="Fiyat" class="form-control" id="field-2" placeholder="Fiyat">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">Resim</label>
+                            <input type="file" name="Resim" id="uploadfile"  />
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <button id="btnProjeKaydet" class="btn btn-default waves-effect waves-light" type="submit">
+                    Kaydet
+                </button>
+
+                <a id="btnProjeKapat" class="btn btn-danger waves-effect waves-light pull-right">Kapat</a>
+            </form>
+        </div>
+    </div>
+</div><!-- /.modal -->
+
+
+<script type="text/javascript">
+
+
+    function oprtProje(value, row, index) {
+        return [
+            '<div>',
+            ' <div class="btn-group">',
+            ' <button type="button" class="btn btn-xs  btn-success btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false">',
+            '<i class="fa fa-cogs" >&nbsp;</i> &nbsp;',
+            '  <span class="fa fa-caret-down"></span>',
+            '   <span class="sr-only">Toggle Dropdown</span>',
+            '  </button>',
+            '  <ul class="dropdown-menu"  style="position:static;" role="menu">',
+            ' <li><a href="#" id="btnProjeDuzenle"  data-toggle="tooltip" title="Proje Düzenle" data-placement="bottom"><i class="fa fa-exclamation" ></i>Düzenle</a></li>',
+            ' <li><a href="#" id="btnProjeCikart"  data-toggle="tooltip" title="Proje Çıkart" data-placement="bottom"><i class="fa fa-exclamation" ></i>Çıkart</a></li>',
+
+            ' </ul>',
+            ' </div>',
+        ].join('');
+    }
+    window.oprtProjeEvent = {
+        'click #btnProjeDuzenle': function (e, value, row, index) {
+            $.get('/Admin/UrunGetir?id=' + row.ID, function (data) {
+                var cariform = $('#frmProje');
+                populate(cariform, data[0]);
+                var mdl = $('#mdlProjeForm');
+                mdl.modal('show');
+            },
+
+                'json');
+        } ,
+ 
+   
+        'click #btnProjeCikart': function (e, value, row, index) {
+             swal({
+                title: "Ürün Kaydı İptal İşlemi",
+                text: "Emin misiniz?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonClass: "btn-default",
+                cancelButtonText: "Vazgeç",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Devam",
+                closeOnConfirm: false,
+            },
+                function () {
+                    swal.close();
+                    $.get('/Admin/ProjePasif?ID=' + row.ID, function (data) {
+                        $('#table-Projeler').bootstrapTable('refreshOptions', { silent: true });
+                        window.location.reload();
+                    },
+                        'json');
+                });
+        }
+    }
+
+
+    $('#BtnYeniProje').click(function () {
+        $('#frmProje')[0].reset();
+        $.get('/Proje/YeniProjeNoGetir', function (data) {
+            $('.YeniProjeNo').val(data);
+        },
+            'json');
+        var mdl = $('#mdlProjeForm');
+        mdl.modal('show');
+    });
+
+    $('#btnProjeKapat').click(function () {
+        var mdl = $('#mdlProjeForm');
+        mdl.modal('hide');
+    });
+
+
+
+
+</script>

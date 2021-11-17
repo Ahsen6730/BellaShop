@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Bella.Models.Slides>
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{<div class="item slide2 alt">
+    @foreach (var item in Model)
+    {
+
+
+        <img class="slide-img" src="..@item.Resim" alt="" />
+        <div class="caption">
+            <div class="container">
+                <div class="div-table">
+                    <div class="div-cell">
+                        <div class="caption-content">
+                            <h2 class="caption-title">
+                                @item.Baslik
+                            </h2>
+                            <h3 class="caption-subtitle"><span>@item.Orta</span></h3>
+                            <div class="price">
+                                <span>&#8378;</span><ins></ins>
+                                <span>&#8378;</span><del>86</del>
+                            </div>
+                            <p class="caption-text">
+                                <a class="btn btn-theme" href="#">@item.Butonyazi</a>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>}

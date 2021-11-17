@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Bella.Models.Urun>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+@if (Model != null)
+{
+
+
+
+    <div class="row">
+
+        @{Html.RenderAction("Uruneklekismi", "Admin");}@*component*@
+
+    </div>
+
+  
+
+}
+

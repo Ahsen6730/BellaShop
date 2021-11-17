@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Bella.Models.Iletisim>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model != null)
+{
+    <div class="content-area">
+
+        <!-- BREADCRUMBS -->
+        <section class="page-section breadcrumbs">
+            <div class="container">
+                <div class="page-header">
+
+                </div>
+
+            </div>
+        </section>
+        <!-- /BREADCRUMBS -->
+        <!-- PAGE -->
+        <section class="page-section color">
+            <div class="container">
+
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {<div class="col-md-4">
+                            <div class="contact-info">
+
+                                <h2 class="block-title"><span>Bizimle iletişime geçin</span></h2>
+
+                                <div class="media-list">
+                                    <div class="media">
+                                        <i class="pull-left fa fa-home"></i>
+                                        <div class="media-body">
+                                            <strong>Adres:</strong><br>
+                                            @item.Adres
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <i class="pull-left fa fa-phone"></i>
+                                        <div class="media-body">
+                                            <strong>Telefon:</strong><br>
+                                            @item.Telefon
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <i class="pull-left fa fa-envelope-o"></i>
+                                        <div class="media-body">
+                                            <strong>Firma:</strong><br>
+                                            @item.FirmaAdi
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <i class="pull-left fa fa-envelope-o"></i>
+                                        <div class="media-body">
+                                            <strong>Firma Açıklama:</strong><br>
+                                            @item.Aciklama
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-body">
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    }
+                    <div class="col-md-8 text-left">
+
+                        <h2 class="block-title">
+                            <span>
+                                İletişim Formu
+                                <br />
+                                @ViewBag.mesaj
+                            </span>
+                        </h2>
+
+
+                        <!-- Contact form -->
+                        <form name="contact-form" action="/Iletisim/Index" method="post" class="contact-form" id="contact-form">
+
+                            <div class="outer required">
+                                <div class="form-group af-inner">
+                                    <label class="sr-only" for="Name">Ad</label>
+                                    <input type="text" name="Ad" id="name" placeholder="Name" value="" size="30"
+                                           data-toggle="tooltip" title="Name is required"
+                                           class="form-control placeholder" />
+                                </div>
+                            </div>
+
+                            <div class="outer required">
+                                <div class="form-group af-inner">
+                                    <label class="sr-only" for="Email">Email</label>
+                                    <input type="text" name="Email" id="email" placeholder="Email" value="" size="30"
+                                           data-toggle="tooltip" title="Email is required"
+                                           class="form-control placeholder" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group af-inner">
+                                <label class="sr-only" for="Input-message">Mesaj</label>
+                                <textarea name="message" id="input-message" placeholder="Message" rows="4" cols="50"
+                                          data-toggle="tooltip" title="Message is required"
+                                          class="form-control placeholder"></textarea>
+                            </div>
+
+                            <div class="outer required">
+                                <div class="form-group af-inner">
+                                    <input type="submit" name="submit" class="form-button form-button-submit btn btn-theme btn-theme-dark" id="submit_btn" value="Send message" />
+                                </div>
+                            </div>
+
+                        </form>
+                        <!-- /Contact form -->
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- /PAGE -->
+        <!-- PAGE -->
+        <section class="page-section no-padding no-bottom-space">
+            <div class="container full-width">
+
+                <!-- Google map -->
+                <div class="google-map">
+                    <div id="map-canvas">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48192.21068396679!2d29.028033623386754!3d40.98119249814378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac790b17ba89d%3A0xd2d24ea0437a7ee2!2zS2FkxLFrw7Z5L8Swc3RhbmJ1bA!5e0!3m2!1str!2str!4v1562662945618!5m2!1str!2str" frameborder="0" style="border:0 ;width:100%; height:4px;" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <!-- /Google map -->
+
+            </div>
+        </section>
+    </div>      }

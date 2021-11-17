@@ -1,0 +1,171 @@
+﻿@model IEnumerable<Bella.Models.SonGonderimiz>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+@if (Model != null)
+{
+
+
+
+    <div class="row">
+
+        <div class="panel panel-color panel-inverse">
+            <div class="panel-heading" style="height:35px;">
+                <h3 class="panel-title">Son Gönderi EKLE</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6 ProjeToolBar">
+                    <a id="BtnYeniProje" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Ekle</a>
+                </div>
+                <table id="table-Projeler" data-toolbar=".ProjeToolBar" data-url="/Admin/SongonderiListGetir" data-height="100%" data-pagination="true" data-page-list="[20,50,100,250,500,1000,2000,4000]" data-page-size="20"
+                       data-toggle="table" data-show-refresh="true" data-show-toggle="false" data-show-columns="false" data-search="true" data-select-item-name="toolbar1"
+                       data-show-export="false" data-side-pagination="server" style="display:table;">
+                    <thead>
+                        <tr>
+                            <th data-field="operate" data-formatter="oprtProje" data-events="oprtProjeEvent">İşlem</th>
+                            <th data-field="ID" data-sortable="false" data-visible="false">ID</th>
+                            <th data-field="Baslik" data-sortable="false"> Baslik</th>
+                            <th data-field="Orta" data-sortable="false"> Orta </th>
+                            <th data-field="Yazi" data-sortable="false">Yazi</th>
+                            <th data-field="Resim" data-sortable="false">Resim</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <div id="mdlProjeForm" class="modal wine" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color:lightgray;padding:5px;">
+                    <form id="frmProje" class="card-box" action="/Admin/Songonderiekle" method="post" enctype="multipart/form-data">
+                        <div class="row ">
+                            <div class="Projelertoolbar">
+                                <strong class="panel-title">Son Gonderi</strong>
+                            </div>
+                            <input type="hidden" name="ID" value="0">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="field-2" class="control-label">Baslik</label>
+                                    <input type="text" name="Baslik" class="form-control" id="field-2" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="field-2" class="control-label">Orta</label>
+                                        <input type="text" name="Orta" class="form-control" id="field-2" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="field-2" class="control-label">Yazi</label>
+                                        <input type="text" name="Yazi" class="form-control" id="field-2" placeholder="">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="field-2" class="control-label">Resim</label>
+                                    <input type="file" name="Resim" id="uploadfile" />
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button id="btnProjeKaydet" class="btn btn-default waves-effect waves-light" type="submit">
+                            Kaydet
+                        </button>
+
+                        <a id="btnProjeKapat" class="btn btn-danger waves-effect waves-light pull-right">Kapat</a>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /.modal -->
+
+    </div>
+    <script type="text/javascript">
+
+
+            function oprtProje(value, row, index) {
+                return [
+                    '<div>',
+                    ' <div class="btn-group">',
+                    ' <button type="button" class="btn btn-xs  btn-success btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false">',
+                    '<i class="fa fa-cogs" >&nbsp;</i> &nbsp;',
+                    '  <span class="fa fa-caret-down"></span>',
+                    '   <span class="sr-only">Toggle Dropdown</span>',
+                    '  </button>',
+                    '  <ul class="dropdown-menu"  style="position:static;" role="menu">',
+                    ' <li><a href="#" id="btnProjeDuzenle"  data-toggle="tooltip" title="Proje Düzenle" data-placement="bottom"><i class="fa fa-exclamation" ></i>Düzenle</a></li>',
+                    ' <li><a href="#" id="btnProjeCikart"  data-toggle="tooltip" title="Proje Çıkart" data-placement="bottom"><i class="fa fa-exclamation" ></i>Çıkart</a></li>',
+
+                    ' </ul>',
+                    ' </div>',
+                ].join('');
+            }
+            window.oprtProjeEvent = {
+                'click #btnProjeDuzenle': function (e, value, row, index) {
+                    $.get('/Admin/SongonderiGetir?id=' + row.ID, function (data) {
+                        var cariform = $('#frmProje');
+                        populate(cariform, data[0]);
+                        var mdl = $('#mdlProjeForm');
+                        mdl.modal('show');
+                    },
+
+                        'json');
+                },
+
+
+                'click #btnProjeCikart': function (e, value, row, index) {
+                    swal({
+                        title: "Ürün Kaydı İptal İşlemi",
+                        text: "Emin misiniz?",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonClass: "btn-default",
+                        cancelButtonText: "Vazgeç",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Devam",
+                        closeOnConfirm: false,
+                    },
+                        function () {
+                            swal.close();
+                            $.get('/Admin/SongonderiPasif?ID=' + row.ID, function (data) {
+                                $('#table-Projeler').bootstrapTable('refreshOptions', { silent: true });
+                                window.location.reload();
+                            },
+                                'json');
+                        });
+                }
+            }
+
+
+            $('#BtnYeniProje').click(function () {
+                $('#frmProje')[0].reset();
+                $.get('/Proje/YeniProjeNoGetir', function (data) {
+                    $('.YeniProjeNo').val(data);
+                },
+                    'json');
+                var mdl = $('#mdlProjeForm');
+                mdl.modal('show');
+            });
+
+            $('#btnProjeKapat').click(function () {
+                var mdl = $('#mdlProjeForm');
+                mdl.modal('hide');
+            });
+
+
+
+
+    </script>
+}
+

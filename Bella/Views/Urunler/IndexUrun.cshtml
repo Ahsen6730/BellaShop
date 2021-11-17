@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Bella.Models.Urun>
+@{
+   ViewBag.Title = "Index";
+}
+@if (Model != null)
+{
+
+    <section class="page-section breadcrumbs">
+        <div class="container">
+            <div class="page-header">
+                <h1>
+                    Kategori Sayfası
+                </h1>
+            </div>
+
+        </div>
+    </section>
+    <!-- /BREADCRUMBS -->
+    <!-- PAGE WITH SIDEBAR -->
+    <section class="page-section with-sidebar">
+        <div class="container">
+            <div class="row">
+
+                <!-- CONTENT -->
+                <div class="col-md-12 content" id="content">
+
+                   
+                    <div class="row products grid">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-4 col-sm-6">
+                                <div class="thumbnail no-border no-padding">
+                                    <div class="media">
+                                        <a class="media-link" href="#">
+                                            <img src="..@item.Resim" alt="" />
+                                            <span class="icon-view">
+                                                <strong><i class="fa fa-eye"></i></strong>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="caption text-center">
+                                        <h4 class="caption-title">@item.UrunAdi</h4>
+                                        <div class="rating">
+                                            <span class="star"></span>
+                                            <!--
+                        -->
+                                            <span class="star active"></span>
+                                            <!--
+                        -->
+                                            <span class="star active"></span>
+                                            <!--
+                        -->
+                                            <span class="star active"></span>
+                                            <!--
+                        -->
+                                            <span class="star active"></span>
+                                        </div>
+                                        <div class="price"><ins>@item.UrunFİyatları.OrderByDescending(b => b.ID).FirstOrDefault().Fiyat&#8378;</ins> <del>&#8378;425.00</del></div>
+                                        <div class="buttons">
+                                            <a class="btn btn-theme btn-theme-transparent btn-wish-list" href="#"><i class="fa fa-heart"></i></a>
+                                            <!--
+    -->
+                                            
+                                            <!--
+    -->
+                                            <form id="frmProje" action="/Home/SepetEkle" method="post">
+                                                <a class="btn btn-theme btn-theme-transparent btn-icon-left" href="/Urunler/UrunDetay/@item.ID"onclick="SepeteEkle(@item.ID)" id="btnProjeDuzenle"><i class="fa fa-shopping-cart"></i>Sepete ekle</a>
+                                                <!--
+        -->
+                                            </form>
+                                            <a class="btn btn-theme btn-theme-transparent btn-compare" href="#"><i class="fa fa-exchange"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        }
+
+
+                    </div>
+
+                </div>
+                <!-- /CONTENT -->
+
+            </div>
+        </div>
+    </section>
+    <!-- /PAGE WITH SIDEBAR -->
+    <!-- PAGE -->
+}
+    @{Html.RenderAction("PageSection8", "Home");} @*component*@
+
+
+
